@@ -24,7 +24,7 @@ public class MigrateController {
     public String getAllMigrateActualRatePlan(Model model) throws URISyntaxException {
         model.addAttribute("rateplanList", migrateService.findActualRatePlans());
         model.addAttribute("rateplan", new Rateplans());
-        return "migrated_start_report_page";
+        return "migrated_report_page";
 
  /*       @PostMapping("/save")
         public String createOrder(Model model) throws URISyntaxException {
