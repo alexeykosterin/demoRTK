@@ -2,23 +2,25 @@ package com.example.demo.model;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 
 @Entity
 @Data
-@NoArgsConstructor
 public class Rateplans {
 
-    @NotNull
     @Id
-    @GeneratedValue(generator = "system-uuid")
-    @GenericGenerator(name = "system-uuid", strategy = "uuid")
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @NotNull
     @NotBlank
@@ -35,14 +37,37 @@ public class Rateplans {
         this.name = name;
     }
 
+    public Rateplans() {
+
+    }
+
     @PrePersist
     void onCreate() {
         this.setCreated(LocalDateTime.now());
         this.setModified(LocalDateTime.now());
     }
 
+    private void setCreated(LocalDateTime now) {
+    }
+
+    private void setModified(LocalDateTime now) {
+    }
+
     @PreUpdate
     void onUpdate() {
         this.setModified(LocalDateTime.now());
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public boolean getDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
 }

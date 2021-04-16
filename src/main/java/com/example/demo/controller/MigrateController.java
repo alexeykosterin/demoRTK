@@ -20,21 +20,21 @@ public class MigrateController {
         this.migrateService = migrateService;
     }
 
-    @PostMapping("/rateplans")
-    public String createOrder(Model model) throws URISyntaxException {
-        //model.addAllAttributes(migrateService.findAllandMigrate());
-        model.addAttribute("rateplanList", migrateService.findAllandMigrate());
+    @GetMapping("/actual")
+    public String getAllMigrateActualRatePlan(Model model) throws URISyntaxException {
+        model.addAttribute("rateplanList", migrateService.findActualRatePlans());
         model.addAttribute("rateplan", new Rateplans());
-        return "migrated_report_page";
+        return "migrated_start_report_page";
+
+ /*       @PostMapping("/save")
+        public String createOrder(Model model) throws URISyntaxException {
+            //model.addAllAttributes(migrateService.findAllandMigrate());
+            model.addAttribute("rateplanList", migrateService.findAllandMigrate());
+            model.addAttribute("rateplan", new Rateplans());
+            return "migrated_report_page";
+
+        }*/
 
     }
 
-    @GetMapping("/product")
-    public String getAllProduct(Model model) throws URISyntaxException {
-        //model.addAllAttributes(migrateService.findAllandMigrate());
-        model.addAttribute("rateplanList", migrateService.findAllandMigrate());
-        model.addAttribute("rateplan", new Rateplans());
-        return "migrated_report_page";
-
-    }
 }

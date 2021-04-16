@@ -19,7 +19,36 @@ public class MigrateService {
         this.ratePlansRepository = ratePlansRepository;
     }
 
+    public List<Rateplans> findActualRatePlans() throws URISyntaxException {
+        List<Rateplans> rateplansDto = RatePlanMapper.MAPPER.toDoToratePlans(restClientService.findAllRatePlans());
+
+        if (!rateplansDto.isEmpty()) {
+            List<Rateplans>  rateplans = ratePlansRepository.findAll();
+
+            if (!rateplans.isEmpty()) {
+                rateplansDto.forEach(e ->
+                        rateplans.forEach(p -> {
+                                    if (p.getId() == e.getId()) {
+                                        e.setDeleted(true);
+                                    }
+                                }
+                        )
+                );
+
+/*                rateplansDto.removeIf(p -> {
+                    return rateplans.stream().anyMatch(x -> (p.getId() == x.getId()));
+                });*/
+
+            }
+        }
+
+        return rateplansDto;
+    }
+
+
     public List<Rateplans> findAllandMigrate() throws URISyntaxException {
+
+
         List<Rateplans> ratePlans = RatePlanMapper.MAPPER.toDoToratePlans(restClientService.findAllRatePlans());
         if (!ratePlans.isEmpty()) {
             ratePlansRepository.saveAll(ratePlans);

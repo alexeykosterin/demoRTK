@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Report</title>
+    <link href="../css/table_style.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<h1>Migrated Products Report</h1>
+<h2>Product list</h2>
+<table class="table">
+    <thead>
+    <tr>
+        <th>id</th>
+        <th>name</th>
+    </tr>
+    </thead>
+    <tbody th:remove="all-but-first">
+    <tr th:each="rateplan : ${rateplanList}">
+        <td th:text="${rateplan.id}"></td>
+        <td th:text="${rateplan.name}"></td>
+        <td th:text="${rateplan.deleted}"></td>
+   </tr>
+    </tbody>
+</table>
+</body>
+</html>
