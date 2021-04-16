@@ -10,4 +10,20 @@ import org.springframework.stereotype.Component;
 public class RestClientProperties {
     private String url;
     private String basePath;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getBasePath() {
+        return basePath;
+    }
+
+    public void setBasePath(String basePath) {
+        this.basePath = basePath;
+    }
 }
