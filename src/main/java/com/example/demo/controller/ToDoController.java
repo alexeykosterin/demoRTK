@@ -30,13 +30,13 @@ public class ToDoController {
         return ResponseEntity.ok(toDoRepository.findAll());
     }
 
-    @GetMapping("/todo/{id}")
+/*    @GetMapping("/todo/{id}")
     public ResponseEntity<Todo> getToDoById(@PathVariable String id) {
         Optional<Todo> toDo = toDoRepository.findById(id);
         if (toDo.isPresent())
             return ResponseEntity.ok(toDo.get());
         return ResponseEntity.notFound().build();
-    }
+    }*/
 
     @ExceptionHandler
     @ResponseStatus(value = HttpStatus.BAD_REQUEST)
